@@ -5,15 +5,9 @@ window.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (
-        isNaN(
-          parseFloat(document.getElementById("loan-amount").value) != "number"
-        ) ||
-        isNaN(
-          parseFloat(document.getElementById("loan-years").value) != "number"
-        ) ||
-        isNaN(
-          parseFloat(document.getElementById("loan-rate").value) != "number"
-        )
+        isNaN(parseFloat(document.getElementById("loan-amount").value)) ||
+        isNaN(parseFloat(document.getElementById("loan-years").value)) ||
+        isNaN(parseFloat(document.getElementById("loan-rate").value))
       ) {
         alert("Invalid input! Only use numbers");
         throw new Error("Invalid input! Only use numbers");
