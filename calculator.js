@@ -1,36 +1,55 @@
-const loanAmount = document.getElementById("loan-amount");
-const loanYears = document.getElementById("loan-years");
-const loanRate = document.getElementById("loan-rate");
 const form = document.getElementById("calc-form");
 
-function calculateLoan() {
-  let finalAmount = document.getElementById("monthly-payment");
-  let principle = parseFloat(loanAmount.value);
-  let years = parseFloat(loanYears.value);
-  let rate = parseFloat(loanRate.value);
-  let interest = rate / 100 / 12; // need to make interest a decimal, then make it monthly
-  let totalPayments = years * 12;
-  let monthlyPayment =
-    (principle * interest) / (1 - Math.pow(1 + interest, -totalPayments));
-  let roundedAmount = monthlyPayment.toFixed(2); //rounding to two decimal points
-
-  finalAmount.innerText = `$${roundedAmount} per month!`; //final amount displayed in text
-  loanAmount.value = "";
-  loanYears.value = ""; //clearing up form for new loan
-  loanRate.value = "";
-}
-
 if (form) {
+  setupInitialValues();
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    if (
-      isNaN(parseFloat(loanAmount.value)) ||
-      isNaN(parseFloat(loanYears.value)) ||
-      isNaN(parseFloat(loanRate.value))
-    ) {
-      alert("Invalid input! Only use numbers");
-      throw new Error("Invalid input! Only use numbers");
-    }
-    calculateLoan();
+
+    update();
   });
+}
+
+function getCurrentValues() {
+  return {
+    amount: +document.getElementById("loan-amount").value,
+    years: +document.getElementById("loan-years").value,
+    rate: +document.getElementById("loan-rate").value,
+  };
+}
+
+function setupInitialValues() {
+  const values = { amount: 10000, years: 5, rate: 2 };
+
+  const amountCalc = document.getElementById("loan-amount");
+  amountCalc.value = values.amount;
+  const yearsCalc = document.getElementById("loan-years");
+  yearsCalc.value = values.years;
+  const rateCalc = document.getElementById("loan-rate");
+  rateCalc.value = values.rate;
+}
+
+function update() {
+  const currentValues = getCurrentValues();
+  updateMonthly(calculateLoan(currentValues));
+}
+
+function calculateLoan(values) {
+  if (isNaN(values.amount) || isNaN(values.years) || isNaN(values.rate)) {
+    alert("Invalid input! Only use numbers");
+    throw new Error("Invalid input! Only use numbers");
+  }
+  let principle = values.amount;
+  let years = values.years;
+  let rate = values.rate;
+  let interest = rate / 100 / 12; // need to make interest a decimal, then make it monthly
+  let totalPayments = years * 12;
+  return (
+    (principle * interest) /
+    (1 - Math.pow(1 + interest, -totalPayments))
+  ).toFixed(2); //rounding to two decimal points
+}
+
+function updateMonthly(monthly) {
+  const monthlyCalc = document.getElementById("monthly-payment");
+  monthlyCalc.innerText = `$${monthly} per month!`;
 }
