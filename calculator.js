@@ -1,6 +1,7 @@
 const loanAmount = document.getElementById("loan-amount");
 const loanYears = document.getElementById("loan-years");
 const loanRate = document.getElementById("loan-rate");
+const form = document.getElementById("calc-form");
 
 function calculateLoan() {
   let finalAmount = document.getElementById("monthly-payment");
@@ -16,12 +17,11 @@ function calculateLoan() {
   console.log(monthlyPayment);
 
   finalAmount.innerText = `$${roundedAmount} per month!`; //final amount displayed in text
-  loanAmount.innerText = "";
-  loanYears.innerText = "";
-  loanRate.innerText = "";
+  loanAmount.value = "";
+  loanYears.value = "";
+  loanRate.value = "";
 }
 
-const form = document.getElementById("calc-form");
 if (form) {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
