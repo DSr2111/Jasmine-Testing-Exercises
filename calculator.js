@@ -24,20 +24,23 @@ function update() {
 }
 
 function calculateLoan(values) {
-  let finalAmount = document.getElementById("monthly-payment");
   let principle = values.amount;
   let years = values.years;
   let rate = values.rate;
   let interest = rate / 100 / 12; // need to make interest a decimal, then make it monthly
   let totalPayments = years * 12;
   let monthlyPayment =
-    (principle * interest) / (1 - Math.pow(1 + interest, -totalPayments));
-  let roundedAmount = monthlyPayment.toFixed(2); //rounding to two decimal points
+    (principle * interest) /
+    (1 - Math.pow(1 + interest, -totalPayments)).toFixed(2); //rounding to two decimal points
 
-  finalAmount.innerText = `$${roundedAmount} per month!`; //final amount displayed in text
   amountCalc.value = "";
   yearsCalc.value = ""; //clearing up form for new loan
   loanCalc.value = "";
+}
+
+function updateMonthly(monthly) {
+  const monthly = document.getElementById("monthly-payment");
+  monthly.innerText = `$${monthly} per month!`;
 }
 
 if (form) {
