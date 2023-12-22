@@ -22,12 +22,15 @@ function getCurrentUIValues() {
 // Put some default values in the inputs
 // Call a function to calculate the current monthly payment
 function setupIntialValues() {
-  let principle = document.getElementById("loan-amount").value;
-  let years = document.getElementById("loan-years").value;
-  let rate = document.getElementById("loan-rate").value;
-  let monthlyPayment = (principle * rate) / 12 / (1 - Math.pow(1 + rate / 12));
+  let principle = parseFloat(document.getElementById("loan-amount").value);
+  let years = parseFloat(document.getElementById("loan-years").value);
+  let rate = parseFloat(document.getElementById("loan-rate").value);
+  let interest = rate / 100 / 12; // need to make interest a decimal, then make it monthly
+  let totalPayments = years * 12;
 
-  console.log(principle, years, rate);
+  let monthlyPayment =
+    (principle * interest) / (1 - Math.pow(1 + interest, -totalPayments));
+
   console.log(monthlyPayment);
 }
 
