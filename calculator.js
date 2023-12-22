@@ -1,20 +1,21 @@
 window.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("calc-form");
+
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (
+        typeof document.getElementById("loan-amount").value != "number" ||
+        typeof document.getElementById("loan-years").value != "number" ||
+        typeof document.getElementById("loan-rate").value != "number"
+      ) {
+        alert("Invalid input! Only use numbers");
+        throw new Error("Invalid input! Only use numbers");
+      }
       calculateLoan();
     });
   }
 });
-
-function getCurrentUIValues() {
-  return {
-    amount: +document.getElementById("loan-amount").value,
-    years: +document.getElementById("loan-years").value,
-    rate: +document.getElementById("loan-rate").value,
-  };
-}
 
 function calculateLoan() {
   let finalAmount = document.getElementById("monthly-payment");
