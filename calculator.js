@@ -10,6 +10,14 @@ function setupInitialValues() {
   rateCalc = values.rate;
 }
 
+function getCurrentValues() {
+  return {
+    amount: +document.getElementById("loan-amount").value,
+    years: +document.getElementById("loan-years").value,
+    rate: +document.getElementById("loan-rate").value,
+  };
+}
+
 function calculateLoan() {
   let finalAmount = document.getElementById("monthly-payment");
   let principle = parseFloat(loanAmount.value);
