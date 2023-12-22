@@ -14,11 +14,9 @@ function calculateLoan() {
     (principle * interest) / (1 - Math.pow(1 + interest, -totalPayments));
   let roundedAmount = monthlyPayment.toFixed(2); //rounding to two decimal points
 
-  console.log(monthlyPayment);
-
   finalAmount.innerText = `$${roundedAmount} per month!`; //final amount displayed in text
   loanAmount.value = "";
-  loanYears.value = "";
+  loanYears.value = ""; //clearing up form for new loan
   loanRate.value = "";
 }
 
