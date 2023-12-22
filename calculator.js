@@ -23,11 +23,11 @@ function update() {
   updateMonthly(calculateLoan(currentValues));
 }
 
-function calculateLoan() {
+function calculateLoan(values) {
   let finalAmount = document.getElementById("monthly-payment");
-  let principle = parseFloat(loanAmount.value);
-  let years = parseFloat(loanYears.value);
-  let rate = parseFloat(loanRate.value);
+  let principle = values.amount;
+  let years = values.years;
+  let rate = values.rate;
   let interest = rate / 100 / 12; // need to make interest a decimal, then make it monthly
   let totalPayments = years * 12;
   let monthlyPayment =
@@ -35,9 +35,9 @@ function calculateLoan() {
   let roundedAmount = monthlyPayment.toFixed(2); //rounding to two decimal points
 
   finalAmount.innerText = `$${roundedAmount} per month!`; //final amount displayed in text
-  loanAmount.value = "";
-  loanYears.value = ""; //clearing up form for new loan
-  loanRate.value = "";
+  amountCalc.value = "";
+  yearsCalc.value = ""; //clearing up form for new loan
+  loanCalc.value = "";
 }
 
 if (form) {
