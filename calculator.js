@@ -23,13 +23,11 @@ function calculateLoan() {
   let rate = parseFloat(document.getElementById("loan-rate").value);
   let interest = rate / 100 / 12; // need to make interest a decimal, then make it monthly
   let totalPayments = years * 12;
-
   let monthlyPayment =
     (principle * interest) / (1 - Math.pow(1 + interest, -totalPayments));
+  let roundedAmount = monthlyPayment.toFixed(2); //rounding to two decimal points
 
   console.log(monthlyPayment);
 
-  monthlyPayment.toFixed(2); //rounding to two decimal points
-
-  finalAmount.innerText = `$${monthlyPayment} per month!`; //final amount displayed in text
+  finalAmount.innerText = `$${roundedAmount} per month!`; //final amount displayed in text
 }
