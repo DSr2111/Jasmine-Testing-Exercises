@@ -18,6 +18,11 @@ function getCurrentValues() {
   };
 }
 
+function update() {
+  const currentValues = getCurrentValues();
+  updateMonthly(calculateLoan(currentValues));
+}
+
 function calculateLoan() {
   let finalAmount = document.getElementById("monthly-payment");
   let principle = parseFloat(loanAmount.value);
