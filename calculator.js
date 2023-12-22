@@ -25,8 +25,10 @@ function setupIntialValues() {
   let principle = document.getElementById("loan-amount").value;
   let years = document.getElementById("loan-years").value;
   let rate = document.getElementById("loan-rate").value;
+  let monthlyPayment = (principle * rate) / 12 / (1 - Math.pow(1 + rate / 12));
 
   console.log(principle, years, rate);
+  console.log(monthlyPayment);
 }
 
 // Get the current values from the UI
