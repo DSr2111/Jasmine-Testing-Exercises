@@ -1,7 +1,14 @@
-const loanAmount = document.getElementById("loan-amount");
-const loanYears = document.getElementById("loan-years");
-const loanRate = document.getElementById("loan-rate");
 const form = document.getElementById("calc-form");
+
+function setupInitialValues() {
+  const values = { amount: 10000, years: 5, rate: 2 };
+  const amountCalc = document.getElementById("loan-amount");
+  amountCalc = amount.value;
+  const yearsCalc = document.getElementById("loan-years");
+  yearsCalc = years.value;
+  const rateCalc = document.getElementById("loan-rate");
+  rateCalc = values.rate;
+}
 
 function calculateLoan() {
   let finalAmount = document.getElementById("monthly-payment");
